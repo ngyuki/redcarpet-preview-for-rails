@@ -1,0 +1,50 @@
+
+bundle init
+
+vi Gemfile
+%>>>
+source 'https://rubygems.org'
+
+gem 'rails', '~>3.0.0'
+%<<<
+
+# rails インストール
+bundle install --path vendor/bundle
+
+# rails コマンドを作業用にエイリアスしておく
+alias rails='bundle exec rails'
+
+# スケルトン作成 ... アクティブレコードなし
+rails new . -O
+
+# Gemfile が上書きされるので追記
+vi Gemfile
+%>>>
+source 'http://rubygems.org'
+
+gem 'rails', '3.0.17'
+
+gem 'redcarpet'
+gem "coderay"
+%<<<
+
+bundle install
+
+# コントローラー作成
+rails g controller markdown raw
+%>>>
+      create  app/controllers/markdown_controller.rb
+       route  get "markdown/raw"
+      invoke  erb
+      create    app/views/markdown
+      create    app/views/markdown/raw.html.erb
+      invoke  test_unit
+      create    test/functional/markdown_controller_test.rb
+      invoke  helper
+      create    app/helpers/markdown_helper.rb
+      invoke    test_unit
+      create      test/unit/helpers/markdown_helper_test.rb
+%<<<
+
+# 起動
+rails s
