@@ -17,7 +17,7 @@
                 type: "POST",
                 url: url,
                 data: source,
-                //contentType: 'text/x-markdown', // 指定すると OPTIONS リクエストになる？？
+                contentType: 'text/plain',
                 processData: false,
                 dataType: 'text',
                 success: function (data) {
